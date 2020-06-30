@@ -32,7 +32,7 @@ namespace SubnetServer
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
 					webBuilder.UseStartup<Startup>();
-					webBuilder.UseUrls("http://0.0.0.0:5656/");
+					//webBuilder.UseUrls("http://0.0.0.0:5656/");
 				});
     }
 }
