@@ -18,6 +18,8 @@ namespace SubnetServer
 		public SocketServer()
 		{
 			IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
+			Console.WriteLine(ipHostInfo.AddressList);
+			Console.ReadLine();
 			IPAddress ipaddress = ipHostInfo.AddressList[0];
 			localEndPoint = new IPEndPoint(ipaddress, 5657);
 			listenSocket = new Socket(localEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
