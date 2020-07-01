@@ -17,7 +17,7 @@ namespace SubnetServer
 		
 		public SocketServer()
 		{
-			localEndPoint = new IPEndPoint(IPAddress.IPv6Any, 5657);
+			localEndPoint = new IPEndPoint(IPAddress.Any, 5657);
 			listenSocket = new Socket(localEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 		}
 		
