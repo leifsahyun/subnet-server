@@ -4,6 +4,7 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -49,14 +50,17 @@ namespace SubnetServer
             {
                 if (context.Request.Path == "/ws")
                 {
+					Debug.WriteLine("Received message on websocker path");
                     if (context.WebSockets.IsWebSocketRequest)
                     {
+						Debug.WriteLine("Received websocket request");
                         WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
                         ClientHandler handler = new ClientHandler(new WebsocketDriver(webSocket));
 						await handler.Open();
                     }
                     else
                     {
+						Debug.WriteLine("Received non-websocker request");
                         context.Response.StatusCode = 400;
                     }
                 }
