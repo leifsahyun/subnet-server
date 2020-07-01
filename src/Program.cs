@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define DEBUG
+using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using MongoDB.Driver;
@@ -31,7 +33,13 @@ namespace SubnetServer
             Host.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
-					webBuilder.UseUrls("http://0.0.0.0:5656/");
+					webBuilder.ConfigureKestrel(serverOptions =>
+					{
+						serverOptions.Listen(IPAddress.Any, 5656, listenOptions=>
+						{
+							listenOptions.UseConnectionLogging();
+						});
+					});
 					webBuilder.UseStartup<Startup>();
 				});
     }
